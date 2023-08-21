@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ProductEntity {
     private UserEntity userEntity;
 
     public ProductEntity() {
+        this.setCode(UUID.randomUUID().toString());
     }
 
     public ProductEntity(Integer id, String code, String name, String description, String image, BigDecimal price, LocalDateTime dateCreate, LocalDateTime dateUpdate, UserEntity userEntity) {
@@ -123,5 +125,13 @@ public class ProductEntity {
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" + "id=" + id + ", code=" + code + ", name=" + name + ", description=" + description + ", image=" + image + ", price=" + price + ", dateCreate=" + dateCreate + ", dateUpdate=" + dateUpdate + ", userEntity=" + userEntity + '}';
+    }
+
+   
+    
 
 }
