@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp1.infrastructure.controller;
 
+import java.io.IOException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import upeu.edu.pe.project_lp2_gp1.app.service.ProductService;
 import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.ProductEntity;
 import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.UserEntity;
@@ -24,16 +27,17 @@ import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.UserEntity;
  */
 @RestController
 @RequestMapping("/admin/products/")
-public class ProductController {
+public class ProductControllerApi {
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductControllerApi(ProductService productService) {
         this.productService = productService;
     }
     //guardar product
     @PostMapping("/save-product")
-    public String saveProduct(@RequestBody ProductEntity productEntity){
-      return productService.saveProduct(productEntity).toString();
+    public String saveProduct(ProductEntity product,@RequestParam("img") MultipartFile multipartFile) throws IOException{
+      productService.saveProduct(product,multipartFile);
+      return null;
     }
     //ver productos
     @GetMapping("/show")
@@ -56,10 +60,11 @@ public class ProductController {
         productActual.setName(product.getName());
         productActual.setPrice(product.getPrice());
         productActual.setUserEntity(product.getUserEntity());
-        return productService.saveProduct(productActual);
+        //return productService.saveProduct(productActual);
        // log.info("Product obtenido: {}", product);
         //model.addAttribute("product", product);
         //return "admin/products/edit";
+        return null;
     }
 
     @DeleteMapping("/delete/{id}")

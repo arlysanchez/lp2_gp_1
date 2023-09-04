@@ -20,11 +20,7 @@ public class ProductRepositoryImpl implements ProductRepository{
     public ProductRepositoryImpl(ProductCrudRepository productCrudRepository) {
         this.productCrudRepository = productCrudRepository;
     }
-
-    
-    
-
-       
+      
     @Override
     public Iterable<ProductEntity> getProducts() {
         //metodo propio de Spring 
