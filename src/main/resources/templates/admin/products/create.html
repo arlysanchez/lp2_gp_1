@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert = "~{admin/template_admin::head_admin}">
+    <body>
+        <div th:insert = "~{admin/template_admin::header_admin}"></div>
+
+        <div>TODO write content</div>
+    </body>
+
+    <div class="footer" th:insert = "~{admin/template_admin::footer_admin}"></div>
+    <style>
+        .body{
+            position: relative;
+        }
+        .footer{
+            position: absolute;
+            bottom:0px;
+            height: 60px;
+            width: 100%;
+        }
+    </style>
+</html>

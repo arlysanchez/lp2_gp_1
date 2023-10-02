@@ -3,13 +3,53 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert = "~{admin/template_admin::head_admin}">
+
     </head>
     <body>
-        <div>TODO write content</div>
+        <div th:insert = "~{admin/template_admin::header_admin}"></div>
+        <div class="container">
+            <a class="btn btn-primary" th:href="@{/admin/productos/create}"> Crear producto </a>
+
+            <table class="table">
+                <thead>
+                   <tr>
+                       <th scope="col">Nombre</th>
+                       <th scope="col">Descripcion</th>
+                       <th scope="col">Precio</th>
+                       <th scope="col">Editar</th> 
+                       <th scope="col">Eliminar</th> 
+                       <th scope="col">Inventario</th> 
+                </tr> 
+                </thead>
+                <tbody>
+                   <tr th:each="producto: ${products}">
+                    <td th:text="${producto.name}"></td>
+                    <td th:text="${producto.description}"></td>
+                    <td th:text="${producto.price}"></td>
+                    <td> <a class="btn btn-warning">Editar</a></td>
+                    <td> <a class="btn btn-danger">Eliminar</a></td>
+                    <td> <a class="btn btn-primary">Inventario</a></td>
+                </tr> 
+                </tbody>
+                
+            </table>
+
+
+        </div>
+
+        <div class="footer" th:insert = "~{admin/template_admin::footer_admin}"></div>
     </body>
+    <style>
+        .body{
+            position: relative;
+        }
+        .footer{
+            position: absolute;
+            bottom:0px;
+            height: 60px;
+            width: 100%;
+        }
+    </style>
 </html>

@@ -30,6 +30,8 @@ public class UserEntity {
     private String address;
     private String cellphone;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     private LocalDateTime dateCreated;
 

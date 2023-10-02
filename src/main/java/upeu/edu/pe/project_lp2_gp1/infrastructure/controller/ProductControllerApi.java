@@ -26,7 +26,7 @@ import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.UserEntity;
  * @author LAB-2
  */
 @RestController
-@RequestMapping("/admin/products/")
+@RequestMapping("api/")
 public class ProductControllerApi {
     private final ProductService productService;
 
