@@ -22,7 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <p class="card-text"th:text="${product.name}"> Nombre del producto</p>  
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-success">Ver Producto</a>     
+                            <a class="btn btn-success" th:href="@{/home/product-detail/{id} (id=${product.id})}">Ver Producto</a>     
                         </div>
                     </div> 
                 </div>
@@ -33,5 +33,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <div class="footer" th:insert = "~{user/template_user::footer}"></div>
     </body>
-   
+   <style>
+     .body{
+            position: relative;
+        }
+        .footer{
+            position: absolute;
+            bottom:0px;
+            height: 50px;
+            width: 100%;
+        }
+        
+</style>
 </html>
