@@ -14,19 +14,20 @@ import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.StockEntity;
  * @author LAB-2
  */
 public class StockService {
-   private final StockRepository stockRepository;
+
+    private final StockRepository stockRepository;
 
     public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
-  public StockEntity saveStock(StockEntity stockEntity){
-    return stockRepository.saveStock(stockEntity);
-  }
-   public List<StockEntity> getStockByProduct(ProductEntity productEntity){
-         return stockRepository.getStockByProductEntity(productEntity);
-  
-   }
 
+    public StockEntity saveStock(StockEntity stockEntity) {
+        return stockRepository.saveStock(stockEntity);
+    }
+
+    public List<StockEntity> getStockByProduct(ProductEntity productEntity) {
+        return stockRepository.getStockByProductEntity(productEntity);
+
+    }
 
 }
-

@@ -73,8 +73,35 @@ public class ProductService {
         }
         
     }
+    
+    
+    
     public void deleteProductById(Integer id){
           productRepository.deleteProductById(id);
+    }
+    //PARA EL API
+    
+       public ProductEntity saveProductApi(ProductEntity product) throws IOException{
+        if(product.getId()==null){
+            UserEntity user = new UserEntity();
+            user.setId(1);
+            product.setDateCreate(LocalDateTime.now());
+            product.setDateUpdate(LocalDateTime.now());
+            product.setUserEntity(user);
+            return productRepository.saveProduct(product);
+
+        }else{
+         ProductEntity productDB = productRepository.getProductById(product.getId());
+                 log.info("product: {}",productDB);
+         //sino se carga la imagen toma la que se le guardo al registro
+        
+         product.setCode(productDB.getCode());
+         product.setUserEntity(productDB.getUserEntity());
+         product.setDateCreate(productDB.getDateCreate());
+         product.setDateUpdate(LocalDateTime.now());
+         return productRepository.saveProduct(product);
+        }
+        
     }
             
     
