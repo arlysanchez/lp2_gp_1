@@ -51,6 +51,7 @@ public class HomeController {
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("stock", lastBalance);
         try {
+            //usuario en sesion
             model.addAttribute("id", 1);
         }catch (Exception e){
 
