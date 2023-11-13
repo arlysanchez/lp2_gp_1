@@ -14,10 +14,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "ordersproducts")
 public class OrderProductEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity productEntity;
@@ -28,10 +29,8 @@ public class OrderProductEntity {
 
     public OrderProductEntity() {
     }
-    
 
-    public OrderProductEntity(Integer id, ProductEntity productEntity, Integer quantity, OrderEntity orderEntity) {
-        this.id = id;
+    public OrderProductEntity(ProductEntity productEntity, Integer quantity, OrderEntity orderEntity) {
         this.productEntity = productEntity;
         this.quantity = quantity;
         this.orderEntity = orderEntity;
@@ -68,11 +67,9 @@ public class OrderProductEntity {
     public void setOrderEntity(OrderEntity orderEntity) {
         this.orderEntity = orderEntity;
     }
-    
-    public BigDecimal getTotalPrice(){
+
+    public BigDecimal getTotalPrice() {
         return this.productEntity.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
-    
-       
-    
+
 }

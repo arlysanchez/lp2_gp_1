@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import upeu.edu.pe.project_lp2_gp1.app.service.CartService;
+import upeu.edu.pe.project_lp2_gp1.app.service.UserServices;
 import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.UserEntity;
 
 /**
@@ -21,22 +22,21 @@ import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.UserEntity;
 @Controller
 @RequestMapping("/user/order")
 public class OrderController {
-    private final CartService cartService;    
+    private final CartService cartService; 
+    private final UserServices userServices;
     private final Logger log = LoggerFactory.getLogger(OrderController.class);    
+
+    public OrderController(CartService cartService, UserServices userServices) {
+        this.cartService = cartService;
+        this.userServices = userServices;
+    }
     
 
-    public OrderController(CartService cartService) {
-        this.cartService = cartService;
-    }
+    
     
     @GetMapping("/sumary-order")
     public String showSumaryOrder(Model model){
-        UserEntity user = new UserEntity();
-        user.setFirtName("Jhan Arly");
-        user.setLastName("Sanchez Tarrillo");
-        user.setEmail("jarly@upeu.edu.pe");
-        user.setAddress("upeu");
-        
+        UserEntity user = userServices.findById(1);
         model.addAttribute("cart", cartService.getItemCarts());
         model.addAttribute("total", cartService.getTotalCart());
         model.addAttribute("user", user);

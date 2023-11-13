@@ -13,12 +13,14 @@ import upeu.edu.pe.project_lp2_gp1.app.repository.OrderProductRepository;
 import upeu.edu.pe.project_lp2_gp1.app.repository.OrderRepository;
 import upeu.edu.pe.project_lp2_gp1.app.repository.ProductRepository;
 import upeu.edu.pe.project_lp2_gp1.app.repository.StockRepository;
+import upeu.edu.pe.project_lp2_gp1.app.repository.UserRepository;
 import upeu.edu.pe.project_lp2_gp1.app.service.CartService;
 import upeu.edu.pe.project_lp2_gp1.app.service.OrderProductService;
 import upeu.edu.pe.project_lp2_gp1.app.service.OrderService;
 import upeu.edu.pe.project_lp2_gp1.app.service.ProductService;
 import upeu.edu.pe.project_lp2_gp1.app.service.StockService;
 import upeu.edu.pe.project_lp2_gp1.app.service.UploadFile;
+import upeu.edu.pe.project_lp2_gp1.app.service.UserServices;
 import upeu.edu.pe.project_lp2_gp1.app.service.ValidateStock;
 
 /**
@@ -61,5 +63,9 @@ public class BeanConfiguration {
     @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public  CartService cartService(){
         return  new CartService();
+    }
+     @Bean
+    public UserServices userService(UserRepository userRepository){
+        return  new UserServices(userRepository);
     }
 }
