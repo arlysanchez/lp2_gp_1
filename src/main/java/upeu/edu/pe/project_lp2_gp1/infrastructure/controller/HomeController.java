@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp1.infrastructure.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import upeu.edu.pe.project_lp2_gp1.infrastructure.entity.StockEntity;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
+
     private final ProductService productService;
     private final StockService stockService;
 
@@ -29,35 +31,33 @@ public class HomeController {
         this.stockService = stockService;
     }
 
-    
-    
-    
-    
     @GetMapping
-    public String home(Model model){
-        
-        
+    public String home(Model model, HttpSession httpSession) {
+
         model.addAttribute("products", productService.getProducts());
+       // model.addAttribute("id", httpSession.getAttribute("iduser").toString());
+
         return "home";
-        
+
     }
+
     @GetMapping("/product-detail/{id}")
-    public String productDetail(@PathVariable Integer id, Model model){
+    public String productDetail(@PathVariable Integer id, Model model, HttpSession httpSession) {
         List<StockEntity> stocks = stockService.getStockByProduct(productService.getProductById(id));
         //log.info("Id product: {}", id);
         //log.info("stock size: {}", stocks.size());
-        Integer lastBalance = stocks.get(stocks.size()-1).getBalance();
+        Integer lastBalance = stocks.get(stocks.size() - 1).getBalance();
 
         model.addAttribute("product", productService.getProductById(id));
         model.addAttribute("stock", lastBalance);
         try {
             //usuario en sesion
-            model.addAttribute("id", 1);
-        }catch (Exception e){
+            model.addAttribute("id", httpSession.getAttribute("iduser").toString());
+
+        } catch (Exception e) {
 
         }
         return "user/productdetail";
-    } 
-    
-    
+    }
+
 }

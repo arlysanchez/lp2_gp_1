@@ -4,6 +4,7 @@
  */
 package upeu.edu.pe.project_lp2_gp1.app.service;
 
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import org.slf4j.*;
@@ -39,10 +40,10 @@ public class ProductService {
     public ProductEntity getProductById(Integer id){
         return productRepository.getProductById(id);
     }
-    public ProductEntity saveProduct(ProductEntity product,MultipartFile multipartFile) throws IOException{
+    public ProductEntity saveProduct(ProductEntity product,MultipartFile multipartFile, HttpSession httpSession) throws IOException{
         if(product.getId()==null){
             UserEntity user = new UserEntity();
-            user.setId(1);
+            user.setId(Integer.parseInt(httpSession.getAttribute("iduser").toString()));
             product.setDateCreate(LocalDateTime.now());
             product.setDateUpdate(LocalDateTime.now());
             product.setUserEntity(user);

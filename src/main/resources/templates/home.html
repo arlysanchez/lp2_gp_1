@@ -8,7 +8,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     </head>
     <body>
-        <div th:insert = "~{user/template_user::header}"></div>
+        <!-- Navigation -->
+        <div  th:insert = "~{user/template_user::header}" th:if="${id==null}"></div>
+
+        <div th:insert = "~{user/template_user::userlogged}" th:unless="${id==null}"></div>
+
+
+
         <div class="container">
             <header class="jumbotron my-4">
                 <h1 class="display-3">Bienvenido a tu tienda en linea!!! </h1> 
@@ -33,8 +39,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <div class="footer" th:insert = "~{user/template_user::footer}"></div>
     </body>
-   <style>
-     .body{
+    <style>
+        .body{
             position: relative;
         }
         .footer{
@@ -43,6 +49,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             height: 50px;
             width: 100%;
         }
-        
-</style>
+
+    </style>
 </html>
