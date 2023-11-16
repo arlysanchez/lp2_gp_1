@@ -25,6 +25,7 @@ public class ProductRepositoryImpl implements ProductRepository{
     public Iterable<ProductEntity> getProducts() {
         //metodo propio de Spring 
         return productCrudRepository.findAll();
+        
     }
 
     @Override

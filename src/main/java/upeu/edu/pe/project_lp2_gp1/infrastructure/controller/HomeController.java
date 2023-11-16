@@ -35,8 +35,16 @@ public class HomeController {
     public String home(Model model, HttpSession httpSession) {
 
         model.addAttribute("products", productService.getProducts());
-       // model.addAttribute("id", httpSession.getAttribute("iduser").toString());
 
+        try {
+            //usuario en sesion
+            model.addAttribute("id", httpSession.getAttribute("iduser").toString());
+
+        } catch (Exception e) {
+
+        }
+        
+        
         return "home";
 
     }

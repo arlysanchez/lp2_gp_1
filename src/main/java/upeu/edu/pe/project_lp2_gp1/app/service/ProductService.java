@@ -33,6 +33,8 @@ public class ProductService {
 
     public Iterable<ProductEntity> getProducts() {
         return productRepository.getProducts();
+        
+        
     }
     public Iterable<ProductEntity> getProductsByUser(UserEntity user) {
         return productRepository.getProductsByUser(user);
